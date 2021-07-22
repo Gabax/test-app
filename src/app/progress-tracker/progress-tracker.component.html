@@ -1,52 +1,11 @@
-<div role="group">
-    <ol
-      class="progress-tracker"
-      [class.progress-tracker--light]="variant !== 'REGULAR'"
-    >
-      <ng-container *ngFor="let item of progressSteps; let i = index">
-        <li *ngIf="i !== 0" role="separator">
-          <span
-            class="progress-tracker__separator"
-            [class.progress-tracker__separator--done]="
-              item.state !== progressTrackerStateEnum.REST
-            "
-          ></span>
-        </li>
-        <li>
-          <span
-            class="progress-tracker-item"
-            [class.progress-tracker-item--active]="
-              item.state === progressTrackerStateEnum.ACTIVE
-            "
-            [class.progress-tracker-item--done]="
-              item.state === progressTrackerStateEnum.DONE
-            "
-          >
-            <span
-              class="progress-tracker-item__title"
-              [class.progress-tracker-item__title--active]="
-                item.state === progressTrackerStateEnum.ACTIVE
-              "
-              [class.progress-tracker-item__title--done]="
-                item.state === progressTrackerStateEnum.DONE
-              "
-            >
-              {{ item.title | titlecase }}
-            </span>
-            <span
-              *ngIf="item.description"
-              class="progress-tracker-item__description"
-              [class.progress-tracker-item__description--active]="
-                item.state === progressTrackerStateEnum.ACTIVE
-                
-              "
-              [class.progress-tracker-item__description--done]="
-                item.state === progressTrackerStateEnum.DONE
-              "
-              >{{ item.description }}</span
-            >
-          </span>
-        </li>
-      </ng-container>
-    </ol>
+<div class="row">
+  <div class="col-xs-12 col-md-8 offset-md-2">
+    <div class="wrapper-progressBar">
+      <ul class="progressBar">
+        <li class="active">Beong Processed</li>
+        <li class="active">Waiting for payment</li>
+        <li>Paid</li>
+      </ul>
+    </div>
+  </div>
 </div>
