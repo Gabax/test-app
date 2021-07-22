@@ -1,11 +1,15 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-12">
-      <div class="wrapper-progressBar">
-        <ul class="progressBar">
-          <li class="active">Beong Processed</li>
-          <li class="active">Waiting for payment</li>
-          <li>Paid</li>
+      <div class="wrapper-progress-tracker">
+        <ul class="progress-tracker" [class.progress-tracker-light]="variant == 'LIGHT'">
+          <li *ngFor="let step of progressSteps; let i = index" 
+            [class.done]="step.state == progressTrackerStateEnum.DONE"
+            [class.active]="step.state == progressTrackerStateEnum.ACTIVE">
+            <span class="title">{{ step.title | titlecase }}</span>
+            <span class="step" [class.no-separator]="i == 0"></span>
+            <span class="description" *ngIf="step.description && variant == 'REGULAR'">{{ step.description }}</span>
+          </li>
         </ul>
       </div>
     </div>

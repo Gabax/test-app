@@ -14,16 +14,21 @@ export class AppComponent {
     {
       title: 'prova 1',
       description: 'description 1',
-      state: ProgressTrackerState.ACTIVE,
+      state: ProgressTrackerState.DONE,
     },
     {
       title: 'prova 2',
       description: 'description 2',
-      state: ProgressTrackerState.REST,
+      state: ProgressTrackerState.DONE,
     },
     {
       title: 'prova 3',
       description: 'description 3',
+      state: ProgressTrackerState.ACTIVE,
+    },
+    {
+      title: 'prova 4',
+      description: 'description 4',
       state: ProgressTrackerState.REST,
     },
   ];
