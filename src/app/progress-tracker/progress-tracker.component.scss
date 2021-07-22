@@ -3,53 +3,51 @@
 }
 
 .progressBar {
-}
+  li {
+    list-style-type: none;
+    float: left;
+    width: 33%;
+    position: relative;
+    text-align: center;
 
-.progressBar li {
-  list-style-type: none;
-  float: left;
-  width: 33%;
-  position: relative;
-  text-align: center;
-}
+    &::before {
+      content: " ";
+      line-height: 30px;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      border: 1px solid #ddd;
+      display: block;
+      text-align: center;
+      margin: 0 auto 10px;
+      background-color: white;
+    }
 
-.progressBar li::before {
-  content: " ";
-  line-height: 30px;
-  border-radius: 50%;
-  width: 30px;
-  height: 30px;
-  border: 1px solid #ddd;
-  display: block;
-  text-align: center;
-  margin: 0 auto 10px;
-  background-color: white;
-}
+    &::after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 4px;
+      background-color: #ddd;
+      top: 15px;
+      left: -50%;
+      z-index: -1;
+    }
 
-.progressBar li::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 4px;
-  background-color: #ddd;
-  top: 15px;
-  left: -50%;
-  z-index: -1;
-}
+    &:first-child::after {
+      content: none;
+    }
 
-.progressBar li:first-child::after {
-  content: none;
-}
+    &.active {
+      color: dodgerblue;
 
-.progressBar li.active {
-  color: dodgerblue;
-}
+      &::before {
+        border: 4px solid dodgerblue;
+      }
+    }
+  }
 
-.progressBar li.active::before {
-  border: 4px solid dodgerblue;
-  // background-color: dodgerblue;
-}
-
-.progressBar .active::after {
-  background-color: dodgerblue;
+  .active::after {
+    background-color: dodgerblue;
+  }
 }
