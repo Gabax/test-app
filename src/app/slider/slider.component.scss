@@ -62,6 +62,13 @@ input[type="range"]:-moz-focusring {
   outline-offset: -1px;
 }
 
+input[type="range"]::-moz-range-progress {
+  height: 6px;
+  border: none;
+  border-radius: 4px;
+  background: #888888;
+}
+
 input[type="range"]:focus::-moz-range-track {
   background: #cccccc;
 }
