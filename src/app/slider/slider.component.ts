@@ -5,8 +5,11 @@ import {
   Input,
   forwardRef,
   ChangeDetectorRef,
+  ViewChild,
+  ElementRef,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import * as noUiSlider from 'nouislider';
 
 @Component({
   selector: 'app-slider',
@@ -23,19 +26,48 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SliderComponent implements ControlValueAccessor {
-  @Input() value: number = 30;
+  @Input() values: number[] = [10, 20];
   @Input() max: number = 100;
   @Input() min: number = 0;
   @Input() step: number = 1;
   @Input() disabled: boolean = false;
 
-  constructor(private cdRef: ChangeDetectorRef) {}
+  @ViewChild('slider') slider!: ElementRef;
+
+  noUiSlider!: any;
+
+  constructor(private cdRef: ChangeDetectorRef) {
+    if (this.values.length > 2) this.values.length = 2;
+  }
+
+  ngAfterViewInit(): void {
+    noUiSlider.create(this.slider.nativeElement, {
+      start: this.values,
+      connect: this.values.length > 1 ? true : 'lower',
+      step: this.step,
+      behaviour: 'none',
+      range: {
+        min: this.min,
+        max: this.max,
+      },
+    });
+
+    this.noUiSlider = this.slider.nativeElement.noUiSlider;
+    this.noUiSlider.on('slide', () => {
+      this.values = [...this.noUiSlider.get(true)];
+      this.cdRef.detectChanges();
+    });
+
+    this.disabled
+      ? this.slider.nativeElement.setAttribute('disabled', true)
+      : this.slider.nativeElement.removeAttribute('disabled');
+  }
 
   onChange = (_: any) => {};
   onBlur = (_: any) => {};
 
-  writeValue(obj: number): void {
-    this.value = obj;
+  writeValue(obj: number[]): void {
+    this.values = obj;
     this.cdRef.detectChanges();
   }
 
@@ -49,5 +81,6 @@ export class SliderComponent implements ControlValueAccessor {
 
   setDisabledState?(isDisabled: boolean): void {
     this.disabled = isDisabled;
+    this.cdRef.detectChanges();
   }
 }
