@@ -26,7 +26,7 @@ import * as noUiSlider from 'nouislider';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SliderComponent implements ControlValueAccessor {
-  @Input() values: number[] = [10, 20];
+  @Input() values: number[] = [0];
   @Input() max: number = 100;
   @Input() min: number = 0;
   @Input() step: number = 1;

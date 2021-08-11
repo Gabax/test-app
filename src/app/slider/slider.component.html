@@ -1,2 +1,5 @@
-<input type="range" id="range" [value]="value" [min]="min" [max]="max" [step]="step" [(ngModel)]="value">
-<label for="range">{{ value }}</label>
+<div class="slider-container">
+    <span *ngIf="values.length > 1">{{ values[0] }}</span>
+    <div id="slider" #slider></div>
+    <span>{{ values.length > 1 ? values[1] : values[0] }}</span>
+</div>
