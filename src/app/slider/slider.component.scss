@@ -35,7 +35,7 @@
 .noUi-target {
   box-shadow: none;
   border: none;
-  height: 2px;
+  height: 4px;
   padding: 0 25px;
 
   .noUi-connects {
@@ -56,6 +56,12 @@
     &::after {
       content: none;
     }
+  }
+}
+
+.noUi-target:not([disabled]) {
+  .noUi-handle {
+    cursor: grab;
   }
 }
 
