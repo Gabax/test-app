@@ -26,7 +26,7 @@ import * as noUiSlider from 'nouislider';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SliderComponent implements ControlValueAccessor {
-  @Input() values: number[] = [0];
+  @Input() values: number[] = [0, 10];
   @Input() max: number = 100;
   @Input() min: number = 0;
   @Input() step: number = 1;
@@ -61,6 +61,16 @@ export class SliderComponent implements ControlValueAccessor {
     this.disabled
       ? this.slider.nativeElement.setAttribute('disabled', true)
       : this.slider.nativeElement.removeAttribute('disabled');
+
+    document
+      .querySelector('.noUi-handle-lower')
+      ?.setAttribute('aria-label', 'slider');
+
+    if (this.values.length > 1) {
+      document
+        .querySelector('.noUi-handle-upper')
+        ?.setAttribute('aria-label', 'slider massimo');
+    }
   }
 
   onChange = (_: any) => {};
