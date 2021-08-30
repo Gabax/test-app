@@ -1,5 +1,5 @@
 <div class="slider-container">
     <span *ngIf="values.length > 1">{{ values[0] }}</span>
-    <div id="slider" #slider></div>
+    <div [id]="id" #slider></div>
     <span>{{ values.length > 1 ? values[1] : values[0] }}</span>
 </div>
